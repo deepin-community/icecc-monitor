@@ -1,5 +1,188 @@
-template-repository (1.0-1) unstable; urgency=medium
+icecc-monitor (3.3-2) unstable; urgency=medium
 
-  * Initial release
+  * Bump watch file to v4, no changes required.
+  * Add the configuration for the CI on salsa.
+  * Bump debhelper from old 11 to 13.
+  * Set debhelper-compat version in Build-Depends.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+  * Update standards version to 4.6.0, no changes needed.
+  * Remove the explicit as-needed linking, as it is done by binutils now.
+  * Add Rules-Requires-Root: no.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Pino Toscano <pino@debian.org>  Sat, 05 Mar 2022 10:04:30 +0100
+
+icecc-monitor (3.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update the build dependencies according to the upstream build system:
+    - bump cmake to 3.1.0
+    - bump qtbase5-dev to 5.4.0
+    - bump libicecc-dev to 1.3
+    - add extra-cmake-modules
+  * Bump Standards-Version to 4.4.0, no changes required.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 14 Sep 2019 12:56:00 +0200
+
+icecc-monitor (3.2.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Switch Vcs-* fields to salsa.debian.org.
+  * Bump the debhelper compatibility to 11:
+    - bump the debhelper build dependency to 11~
+    - bump compat to 11
+    - remove --parallel for dh, as now done by default
+  * Remove Fathi Boudra from Uploaders, as requested by the MIA team.
+    (Closes: #879301)
+  * Remove the get-orig-source target from rules, as it was broken for a long
+    time (refers to dpatch, and SVN).
+  * Bump Standards-Version to 4.2.1, no changes required.
+  * Remove empty line at the end of changelog.
+  * Use https for Format in copyright.
+  * Bump the libicecc-dev build dependency to >= 1.2, to make sure to use the
+    newer icecc static library.
+
+ -- Pino Toscano <pino@debian.org>  Fri, 21 Dec 2018 16:07:54 +0100
+
+icecc-monitor (3.1.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.8, no changes required.
+
+ -- Pino Toscano <pino@debian.org>  Sun, 18 Jun 2017 07:46:42 +0200
+
+icecc-monitor (3.0.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update patches:
+    - upstream_Add-missing-include-on-Qt-5.5-fixes-build.patch: drop,
+      backported
+  * Bump Standards-Version to 3.9.7, no changes required.
+  * Use https for the Vcs-Browser field.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 13 Feb 2016 17:40:05 +0100
+
+icecc-monitor (3.0.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop patch no-icecc-logging.diff, applied upstream.
+  * Upstream switched from Qt4 to Qt5, so:
+    - replace the libqt4-dev build dependency with qtbase5-dev
+    - set QT_SELECT in rules to force the usage of Qt5
+  * Bump cmake build dependency to >= 2.8.9, as indicated in the upstream
+    CMakeLists.txt.
+  * Add a watch file.
+  * Backport upstream commit a772b1e7855e307266ea98cf3f73fcbd24429846 to
+    include a needed header, fixing the build with Qt 5.5; patch
+    upstream_Add-missing-include-on-Qt-5.5-fixes-build.patch.
+  * Slightly tweak short description.
+  * Bump Standards-Version to 3.9.6, no changes required.
+  * Remove lintian override for hyphen-used-as-minus-sign, as it seems no more
+    needed now.
+  * Update copyright.
+
+ -- Pino Toscano <pino@debian.org>  Sun, 29 Nov 2015 09:38:43 +0100
+
+icecc-monitor (2.9.90~git20140222-1) unstable; urgency=medium
+
+  * New Git snapshot.
+  * Fix build with icecc 1.0.x; patch no-icecc-logging.diff.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 22 Feb 2014 12:19:51 +0100
+
+icecc-monitor (2.9.90~git20131208-1) unstable; urgency=low
+
+  * New Git snapshot.
+  * Upstream provides a man page now, so remove icemon.xml, its mention in
+    copyright, and its manual build in rules.
+  * Bump Standards-Version to 3.9.5, no changes required.
+
+ -- Pino Toscano <pino@debian.org>  Sun, 08 Dec 2013 12:47:40 +0100
+
+icecc-monitor (2.9.90~git20130612-1) unstable; urgency=low
+
+  * New Git snapshot.
+  * Drop patch 01_fix_armel_build.diff, applied upstream.
+  * kdelibs is no more used, so:
+    - stop using the kde dh addon
+    - remove the pkg-kde-tools and kdelibs5-dev build dependencies
+    - add the libqt4-dev build dependency
+  * There is no more cmake stuff installed, so stop removing it at
+    dh_auto_install time.
+  * Bump the cmake build dependency to 2.8.5, as indicated by the upstream
+    build system.
+  * Override the hyphen-used-as-minus-sign lintian tags, since all the
+    man pages shipped are generated from docbook.
+  * Add the docbook-xml build dependency for correct man pages regeneration.
+  * Switch copyright to copyright-format v1.0, and update it.
+  * Update Homepage.
+  * Add myself to Uploaders.
+
+ -- Pino Toscano <pino@debian.org>  Wed, 12 Jun 2013 19:13:18 +0200
+
+icecc-monitor (2.0~svn951472-3) unstable; urgency=low
+
+  * Team upload.
+
+  [ Fathi Boudra ]
+  * Remove dh_desktop call, deprecated.
+
+  [ Pino Toscano ]
+  * Switch source format to "3.0 (quilt)":
+    - add debian/source/format file
+    - remove quilt usage in rules
+    - remove the quilt build dependency
+  * Bump debhelper compatibility to 9:
+    - bump compat to 9
+    - bump the debhelper build dependency to 9
+  * Rewrite rules to use the dh sequencer with the kde addon.
+  * Bump Standards-Version to 3.9.4, no changes required.
+  * Add Vcs-* headers.
+  * Link in as-needed mode.
+  * Improve description, and fix a typo in it. (Closes: #687352)
+  * Since icemon links to the static libicecc, include a Built-Using header
+    with the source version of the libicecc-dev package used.
+  * Add the pkg-config build dependency.
+
+ -- Pino Toscano <pino@debian.org>  Sun, 26 May 2013 11:37:48 +0200
+
+icecc-monitor (2.0~svn951472-2) unstable; urgency=low
+
+  * Add patch to fix armel build.
+
+ -- Fathi Boudra <fabo@debian.org>  Sat, 11 Apr 2009 09:57:31 +0200
+
+icecc-monitor (2.0~svn951472-1) unstable; urgency=low
+
+  * New svn snapshot. Initial KDE4 version.
+  * Remove deprecated patches.
+  * Bump compat/debhelper to 7. no changes needed.
+  * Switch to debhelper and quilt.
+  * Update build dependencies: cmake, pkg-kde-tools, kdelibs5-dev.
+
+ -- Fathi Boudra <fabo@debian.org>  Thu, 09 Apr 2009 12:12:40 +0200
+
+icecc-monitor (1.1-3) unstable; urgency=low
+
+  * Update debian/copyright - fixes copyright-file-contains-full-gfdl-
+    license
+  * Add Homepage: - fixes description-contains-homepage
+  * Update to Standards: 3.8.0 - no changes necessary
+
+ -- Mark Purcell <msp@debian.org>  Sun, 28 Sep 2008 12:51:49 +1000
+
+icecc-monitor (1.1-2) unstable; urgency=low
+
+  * Include gcc4.3 patch from Martin. (Closes: #417227)
+
+ -- Mark Purcell <msp@debian.org>  Fri, 27 Apr 2007 22:39:17 +1000
+
+icecc-monitor (1.1-1) unstable; urgency=low
+
+  * Initial Debian release (Closes: #388327)
+  * Merge Andre Woebbeking and Jonathan Riddell package
+  * KDE_3_5_BRANCH update (up to r583517)
+    * Fix typo license in kabout BSD->GPL_V2
+  * Export kde_htmldir to fix doc installation path
+
+ -- Fathi Boudra <fboudra@free.fr>  Mon, 11 Sep 2006 23:15:00 +0200
