@@ -1,4 +1,14 @@
 #!/usr/bin/make -f
 
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export QT_SELECT := 5
+
+ICECC_DEV_VERSION = $(shell dpkg-query -Wf '$${source:Package} (= $${source:Version})' libicecc-dev)
+
 %:
 	dh $@
+
+override_dh_gencontrol:
+	dh_gencontrol -- -Vicecc:Built-Using='$(ICECC_DEV_VERSION)'
